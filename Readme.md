@@ -1,4 +1,4 @@
-# Projekt
+# Biochecker
 
 ## Installation von Python3 und PIP3
 Die Links wurden schnell recherchiert. Bitte noch einmal gewissenhaft prüfen!
