@@ -1,11 +1,12 @@
 # Projekt
 
 ## Installation von Python3 und PIP3
+<span style="color:red">Die Links wurden schnell recherchiert. Bitte die Links noch einmal gewissenhaft prüfen!</span>
 1. Terminalfenster öffnen
 2. Im Terminal überprüfen, ob Python3 bereits installiert ist mit `python3 --version`.
-3. Python3 herunterladen und installieren. 
+3. [Python3](https://www.python.org/) herunterladen und installieren. 
 4. Im Terminal überprüfen, ob PIP3 bereits installiert ist mit `pip3 --version`.
-5. [Pip3](https://de.wikipedia.org/wiki/Pip_(Python)) installieren.
+5. [Pip3](https://pip.pypa.io/en/stable/) installieren.
 
 ## Skript ausführen
 1. GitHub-Repository herunterladen (z.B. unter "Code" > "Zip herunterladen") und entpacken.
