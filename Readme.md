@@ -11,4 +11,4 @@
 1. GitHub-Repository herunterladen (z.B. unter "Code" > "Zip herunterladen") und entpacken.
 2. Mit dem Terminal in den Projektordner navigieren.
 2. Beim ersten ausführen alle benötigten Pakete mit `pip install -r requirements.txt` installieren.
-3. Mit dem Befehl `python3 run.py <Quellpfad> <Zielpfad> <untererCh02Threshold> <untererCh01Threshold> <obererCh02Threshold>` das Skript ausführen. (Thresholds werden im Float-Format z.B. 1.0 übergeben)
+3. Mit dem Befehl `python3 run.py <Quellpfad> <Zielpfad> <untererCh02Threshold> <untererCh01Threshold> <obererCh02Threshold>` das Skript ausführen. (Thresholds werden im Float-Format übergeben, z.B. 1.0)
