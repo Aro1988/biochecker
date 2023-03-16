@@ -1,7 +1,7 @@
 # Projekt
 
 ## Installation von Python3 und PIP3
-Die Links wurden schnell recherchiert. Bitte die Links noch einmal gewissenhaft prüfen!
+Die Links wurden schnell recherchiert. Bitte noch einmal gewissenhaft prüfen!
 1. Terminalfenster öffnen
 2. Im Terminal überprüfen, ob Python3 bereits installiert ist mit `python3 --version`.
 3. [Python3](https://www.python.org/) herunterladen und installieren. 
