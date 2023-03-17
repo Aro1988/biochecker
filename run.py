@@ -49,7 +49,7 @@ try:
         core.saveImage(ch01Background, os.path.join(targetPath, f"{baseName}_untransfected_cleaned.tif"))
         if upperCh01Factor > 0:
             ch01Foreground = core.removeBrightPixel(ch01Foreground, ch01MeanBrightness[0] * upperCh01Factor)
-            print(f"Oberer Threshold für das ch01 Bild: {ch01MeanBrightness[0] * lowerCh01Factor}")
+            print(f"Oberer Threshold für das ch01 Bild: {ch01MeanBrightness[0] * upperCh01Factor}")
         else:
             print(f"Oberer Threshold für das ch01 Bild: 0")
         core.saveImage(ch01Foreground, os.path.join(targetPath, f"{baseName}_transfected_cleaned.tif"))
@@ -58,7 +58,8 @@ try:
         res = 0
         if foregroundMeanBrightness[0] > backgroundMeanBrightness[0]:
             res = 1
-        writer.writerow([baseName, res, locale.format('%0.2f', foregroundMeanBrightness[0]), foregroundMeanBrightness[1], foregroundMeanBrightness[2], locale.format('%0.2f', backgroundMeanBrightness[0]), backgroundMeanBrightness[1], backgroundMeanBrightness[2]])
+        writer.writerow([baseName, res, locale.format_string('%0.2f', foregroundMeanBrightness[0]), foregroundMeanBrightness[1], foregroundMeanBrightness[2], locale.format_string('%0.2f', backgroundMeanBrightness[0]), backgroundMeanBrightness[1], backgroundMeanBrightness[2]])
+        break
     print('Ausführung beendet.')
 except Exception as ex:
     print('Ein Fehler ist aufgetreten:')
