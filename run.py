@@ -19,8 +19,8 @@ try:
     csvPath = os.path.join(targetPath, 'results.csv')   
     if os.path.exists(csvPath):
         os.remove(csvPath)
-    csvFile = open(csvPath, 'w', newline='', delimiter=';')
-    writer = csv.writer(csvFile)
+    csvFile = open(csvPath, 'w', newline='')
+    writer = csv.writer(csvFile, delimiter=';')
     writer.writerow(['sample', 'transfected is brighter', 'brightning_transfected', 'pixelcount_transfected', 'sumbrightness_transfected', 'brightning_untransfacted', 'pixelcount_untransfacted', 'sumbrightness_untransfacted'])
     for ch01FileName in findCh01Files:
         baseName = core.getFileBasename(ch01FileName)
