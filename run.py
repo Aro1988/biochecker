@@ -13,7 +13,7 @@ try:
     sourcePath = core.sanitizeAndCheckPath(args[1])
     targetPath = core.sanitizeAndCheckPath(args[2])
     csvPath = os.path.join(targetPath, 'results.csv')   
-    csvWriter = core.getCsvWriter(csvPath)
+    csvWriter = core.getCsv(csvPath)
     csvWriter.writerow(['sample', 'transfected is brighter', 'brightning_transfected', 'pixelcount_transfected', 'brightning_untransfacted', 'pixelcount_untransfacted'])
     lowerCh02Factor = core.sanitizeAndCheckFactor(args[3])
     lowerCh01Factor = core.sanitizeAndCheckFactor(args[4])
