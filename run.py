@@ -21,7 +21,7 @@ try:
         os.remove(csvPath)
     csvFile = open(csvPath, 'w', newline='')
     writer = csv.writer(csvFile, delimiter=';')
-    writer.writerow(['sample', 'transfected is brighter', 'brightning_transfected', 'pixelcount_transfected', 'sumbrightness_transfected', 'brightning_untransfacted', 'pixelcount_untransfacted', 'sumbrightness_untransfacted'])
+    writer.writerow(['sample', 'transfected is brighter', 'brightning_transfected', 'pixelcount_transfected', 'brightning_untransfacted', 'pixelcount_untransfacted'])
     for ch01FileName in findCh01Files:
         baseName = core.getFileBasename(ch01FileName)
         print(f"Verarbeite {baseName}...")
@@ -58,7 +58,8 @@ try:
         res = 0
         if foregroundMeanBrightness[0] > backgroundMeanBrightness[0]:
             res = 1
-        writer.writerow([baseName, res, locale.format_string('%0.2f', foregroundMeanBrightness[0]), foregroundMeanBrightness[1], foregroundMeanBrightness[2], locale.format_string('%0.2f', backgroundMeanBrightness[0]), backgroundMeanBrightness[1], backgroundMeanBrightness[2]])
+        print(baseName, res, locale.format_string('%0.2f', foregroundMeanBrightness[0]), foregroundMeanBrightness[1], locale.format_string('%0.2f', backgroundMeanBrightness[0]), backgroundMeanBrightness[1])
+        writer.writerow([baseName, res, locale.format_string('%0.2f', foregroundMeanBrightness[0]), int(foregroundMeanBrightness[1]), locale.format_string('%0.2f', backgroundMeanBrightness[0]), int(backgroundMeanBrightness[1])])
         break
     print('Ausführung beendet.')
 except Exception as ex:
