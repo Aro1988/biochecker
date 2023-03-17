@@ -9,19 +9,16 @@ try:
     args = sys.argv
     locale.setlocale(locale.LC_ALL, 'de_DE.utf8') 
     if len(args) != 6:
-        raise Exception('Ungültige Paramter (Quellpfad, Zielpfad, UntererFaktorRot, UntererFaktorGrün, ObererFaktorGrün)')
+        raise Exception('Ungültige Paramter (Quellpfad, Zielpfad, UntererFaktorRot, UntererFaktorGrün, ObererFaktorGrün)')   
     sourcePath = core.sanitizeAndCheckPath(args[1])
     targetPath = core.sanitizeAndCheckPath(args[2])
+    csvPath = os.path.join(targetPath, 'results.csv')   
+    csvWriter = core.getCsvWriter(csvPath)
+    csvWriter.writerow(['sample', 'transfected is brighter', 'brightning_transfected', 'pixelcount_transfected', 'brightning_untransfacted', 'pixelcount_untransfacted'])
     lowerCh02Factor = core.sanitizeAndCheckFactor(args[3])
     lowerCh01Factor = core.sanitizeAndCheckFactor(args[4])
     upperCh01Factor = core.sanitizeAndCheckFactor(args[5])     
-    findCh01Files = core.findCh01Files(sourcePath)
-    csvPath = os.path.join(targetPath, 'results.csv')   
-    if os.path.exists(csvPath):
-        os.remove(csvPath)
-    csvFile = open(csvPath, 'w', newline='')
-    writer = csv.writer(csvFile, delimiter=';')
-    writer.writerow(['sample', 'transfected is brighter', 'brightning_transfected', 'pixelcount_transfected', 'brightning_untransfacted', 'pixelcount_untransfacted'])
+    findCh01Files = core.findCh01Files(sourcePath)    
     for ch01FileName in findCh01Files:
         baseName = core.getFileBasename(ch01FileName)
         print(f"Verarbeite {baseName}...")
@@ -58,8 +55,7 @@ try:
         res = 0
         if foregroundMeanBrightness[0] > backgroundMeanBrightness[0]:
             res = 1
-        print(baseName, res, locale.format_string('%0.2f', foregroundMeanBrightness[0]), foregroundMeanBrightness[1], locale.format_string('%0.2f', backgroundMeanBrightness[0]), backgroundMeanBrightness[1])
-        writer.writerow([baseName, res, locale.format_string('%0.2f', foregroundMeanBrightness[0]), int(foregroundMeanBrightness[1]), locale.format_string('%0.2f', backgroundMeanBrightness[0]), int(backgroundMeanBrightness[1])])
+        csvWriter.writerow([baseName, res, locale.format_string('%0.2f', foregroundMeanBrightness[0]), int(foregroundMeanBrightness[1]), locale.format_string('%0.2f', backgroundMeanBrightness[0]), int(backgroundMeanBrightness[1])])
         break
     print('Ausführung beendet.')
 except Exception as ex:

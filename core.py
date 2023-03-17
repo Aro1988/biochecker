@@ -102,3 +102,9 @@ def getMatchingCh02FileName(ch01File):
 
 def saveImage(image, filePath):
     cv2.imwrite(filePath, image)
+
+def getCsvWriter(csvPath):
+    if os.path.exists(csvPath):
+        os.remove(csvPath)
+    csvFile = open(csvPath, 'w', newline='')
+    return csv.writer(csvFile, delimiter=';')
