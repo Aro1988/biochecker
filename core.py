@@ -18,6 +18,9 @@ def maskExtract(image, mask):
     extractedImages.append(cv2.bitwise_and(image, image, mask=invertedMask))
     return extractedImages
 
+def calculateBrightness(pixel):
+    return math.sqrt(0.299 * math.pow(pixel[0], 2) + 0.587 * math.pow(pixel[1], 2) + 0.114 * math.pow(pixel[2], 2))
+
 def calculateMeanBrightness(image):
     height, width, channels = image.shape
     pixelCount = 0
@@ -27,7 +30,7 @@ def calculateMeanBrightness(image):
             pixel = image[y,x]
             if pixel[0] == 0 and pixel[1] == 0 and pixel[2] == 0:
                 continue
-            brightness = math.sqrt(0.299 * math.pow(pixel[0], 2) + 0.587 * math.pow(pixel[1], 2) + 0.114 * math.pow(pixel[2], 2))
+            brightness = calculateBrightness(pixel)
             brightnessSum += brightness
             pixelCount += 1
     divison = 0
@@ -42,7 +45,7 @@ def removeBrightPixel(image, minBrightness):
             pixel = image[y,x]
             if pixel[0] == 0 and pixel[1] == 0 and pixel[2] == 0:
                 continue
-            brightness = math.sqrt(0.299 * math.pow(pixel[0], 2) + 0.587 * math.pow(pixel[1], 2) + 0.114 * math.pow(pixel[2], 2))
+            brightness = calculateBrightness(pixel)
             if brightness >= minBrightness:
                 image[y,x] = np.array([0,0,0])
     return image
@@ -52,7 +55,7 @@ def switchDarkPixel(foregroundImage, backgroundImage, maxBrightness):
     for y in range(height):
         for x in range(width):
             pixel = foregroundImage[y,x]
-            brightness = math.sqrt(0.299 * math.pow(pixel[0], 2) + 0.587 * math.pow(pixel[1], 2) + 0.114 * math.pow(pixel[2], 2))
+            brightness = calculateBrightness(pixel)
             if brightness <= maxBrightness:
                 backgroundImage[y, x] = pixel
                 foregroundImage[y, x] = [0, 0, 0]
