@@ -72,8 +72,7 @@ for fname in folder:
         cv2.putText(img, str(count), (cx, cy), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
         count = count + 1
     
-    name = name+'_ch00_count.tif'
-    writer.writerow([name, count])
+    writer.writerow([fname, count])
     op = os.path.join(outPath, name)
     cv2.imwrite(op, img)
 print('completed')
