@@ -5,11 +5,26 @@ from scipy import ndimage
 from skimage.feature import peak_local_max
 from skimage.segmentation import watershed
 import imutils
+import csv
+import shutil
 
-src = os.path.join(os.getcwd(), 'source')
+rootPath = os.getcwd() # Hier den Root-Pfad einfügen
+
+src = os.path.join(rootPath, 'source')
+outPath = os.path.join(rootPath, 'count')
+
+if os.path.exists(outPath):
+    shutil.rmtree(outPath)
+if not os.path.exists(outPath):
+    os.mkdir(outPath)
+
+csvFile = os.path.join(rootPath, 'count', 'count.csv')
+csvFile = open(csvFile, 'a', newline='')
+
+writer = csv.writer(csvFile)
+writer.writerow(['file', 'count'])
 
 folder = os.listdir(src)
-
 
 for fname in folder:
 
@@ -58,6 +73,7 @@ for fname in folder:
         count = count + 1
     
     name = name+'_ch00_count.tif'
-    op = os.path.join(os.getcwd(), 'count', name)
+    writer.writerow([name, count])
+    op = os.path.join(outPath, name)
     cv2.imwrite(op, img)
 print('completed')
